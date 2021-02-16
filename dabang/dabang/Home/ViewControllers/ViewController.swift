@@ -167,7 +167,7 @@ extension UIViewController: UITableViewDelegate, UITableViewDataSource {
         return 10
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ApartmentCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: AveragePriceCell.identifier, for: indexPath)
         return cell
     }
 }
