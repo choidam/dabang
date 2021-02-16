@@ -19,6 +19,7 @@
 		ED2C029C25DBE5A0000FBD38 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C029B25DBE5A0000FBD38 /* RoomCell.swift */; };
 		ED2C029F25DBE86D000FBD38 /* ApartmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C029E25DBE86D000FBD38 /* ApartmentCell.swift */; };
 		ED2C02A225DBE90D000FBD38 /* AveragePriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C02A125DBE90D000FBD38 /* AveragePriceCell.swift */; };
+		ED2C02A525DBEACF000FBD38 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C02A425DBEACF000FBD38 /* UILabel+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		ED2C029B25DBE5A0000FBD38 /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 		ED2C029E25DBE86D000FBD38 /* ApartmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCell.swift; sourceTree = "<group>"; };
 		ED2C02A125DBE90D000FBD38 /* AveragePriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePriceCell.swift; sourceTree = "<group>"; };
+		ED2C02A425DBEACF000FBD38 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			children = (
 				ED2C029325DB96B0000FBD38 /* UIButton+Extensions.swift */,
 				ED2C029725DB97CF000FBD38 /* UIColor+Extensions.swift */,
+				ED2C02A425DBEACF000FBD38 /* UILabel+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				ED2C029F25DBE86D000FBD38 /* ApartmentCell.swift in Sources */,
 				ED2C026F25DB90D6000FBD38 /* ViewController.swift in Sources */,
 				ED2C029825DB97CF000FBD38 /* UIColor+Extensions.swift in Sources */,
+				ED2C02A525DBEACF000FBD38 /* UILabel+Extensions.swift in Sources */,
 				ED2C029425DB96B0000FBD38 /* UIButton+Extensions.swift in Sources */,
 				ED2C026B25DB90D6000FBD38 /* AppDelegate.swift in Sources */,
 				ED2C029C25DBE5A0000FBD38 /* RoomCell.swift in Sources */,
