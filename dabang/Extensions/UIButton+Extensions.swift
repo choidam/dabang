@@ -25,4 +25,12 @@ extension UIButton {
         self.layer.cornerRadius = 4
         self.contentEdgeInsets = UIEdgeInsets(top: 11, left: 9, bottom: 11, right: 9)
     }
+    func setHashtag() {
+        self.backgroundColor = .verylightGray
+        self.setTitleColor(.darkGray, for: .normal)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+        self.layer.cornerRadius = 2
+        self.isUserInteractionEnabled = false
+        self.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
 }

@@ -36,6 +36,22 @@ class RoomCell: UITableViewCell {
         $0.text = "여의도 역세권 가격도 저렴한 도보 10분 안전 보장~~~!"
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    var hashtag1 = UIButton().then {
+        $0.setTitle("주차", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    var hashtag2 = UIButton().then {
+        $0.setTitle("주차", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    var hashtag3 = UIButton().then {
+        $0.setTitle("주차", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    var hashtag4 = UIButton().then {
+        $0.setTitle("주차", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -85,6 +101,30 @@ extension RoomCell {
             $0.top.equalTo(roomTypeLabel.snp.bottom)
             $0.leading.equalTo(16)
             $0.trailing.equalTo(roomImageView.snp.leading).offset(-14)
+        }
+        contentView.addSubview(hashtag1)
+        hashtag1.setHashtag()
+        hashtag1.snp.makeConstraints {
+            $0.leading.equalTo(15)
+            $0.top.equalTo(descLabel.snp.bottom).offset(5)
+        }
+        contentView.addSubview(hashtag2)
+        hashtag2.setHashtag()
+        hashtag2.snp.makeConstraints {
+            $0.centerY.equalTo(hashtag1.snp.centerY)
+            $0.leading.equalTo(hashtag1.snp.trailing).offset(4)
+        }
+        contentView.addSubview(hashtag3)
+        hashtag3.setHashtag()
+        hashtag3.snp.makeConstraints {
+            $0.centerY.equalTo(hashtag1.snp.centerY)
+            $0.leading.equalTo(hashtag2.snp.trailing).offset(4)
+        }
+        contentView.addSubview(hashtag4)
+        hashtag4.setHashtag()
+        hashtag4.snp.makeConstraints {
+            $0.centerY.equalTo(hashtag1.snp.centerY)
+            $0.leading.equalTo(hashtag3.snp.trailing).offset(4)
         }
     }
 }
