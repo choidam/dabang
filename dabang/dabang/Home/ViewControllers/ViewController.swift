@@ -64,6 +64,14 @@ class ViewController: UIViewController {
         $0.backgroundColor = .verylightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    var dabangTableView = UITableView().then {
+        $0.separatorStyle = .none
+        $0.allowsSelection = false
+        $0.register(RoomCell.self, forCellReuseIdentifier: RoomCell.identifier)
+        $0.register(ApartmentCell.self, forCellReuseIdentifier: ApartmentCell.identifier)
+        $0.register(AveragePriceCell.self, forCellReuseIdentifier: AveragePriceCell.identifier)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -143,5 +151,23 @@ extension ViewController {
             $0.leading.trailing.equalTo(0)
             $0.height.equalTo(8)
         }
+        self.view.addSubview(dabangTableView)
+        dabangTableView.delegate = self
+        dabangTableView.dataSource = self
+        dabangTableView.snp.makeConstraints{
+            $0.top.equalTo(divideLine.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+}
+
+// MARK: - roomTableView
+extension UIViewController: UITableViewDelegate, UITableViewDataSource {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: RoomCell.identifier, for: indexPath)
+        return cell
     }
 }
