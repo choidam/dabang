@@ -21,6 +21,7 @@
 		ED2C02A225DBE90D000FBD38 /* AveragePriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C02A125DBE90D000FBD38 /* AveragePriceCell.swift */; };
 		ED2C02A525DBEACF000FBD38 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C02A425DBEACF000FBD38 /* UILabel+Extensions.swift */; };
 		ED2C02B925DD59B7000FBD38 /* RoomListData.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED2C02B825DD59B7000FBD38 /* RoomListData.txt */; };
+		ED2C02BD25DD5EEC000FBD38 /* RoomResponseString.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C02BC25DD5EEC000FBD38 /* RoomResponseString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		ED2C02A125DBE90D000FBD38 /* AveragePriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePriceCell.swift; sourceTree = "<group>"; };
 		ED2C02A425DBEACF000FBD38 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		ED2C02B825DD59B7000FBD38 /* RoomListData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RoomListData.txt; sourceTree = "<group>"; };
+		ED2C02BC25DD5EEC000FBD38 /* RoomResponseString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomResponseString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		ED2C028F25DB934B000FBD38 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				ED2C02BB25DD5EDF000FBD38 /* Model */,
 				ED2C029A25DBE591000FBD38 /* Cells */,
 				ED2C029025DB935B000FBD38 /* ViewControllers */,
 			);
@@ -158,6 +161,14 @@
 				ED2C02A125DBE90D000FBD38 /* AveragePriceCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		ED2C02BB25DD5EDF000FBD38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED2C02BC25DD5EEC000FBD38 /* RoomResponseString.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +306,7 @@
 			files = (
 				ED2C029F25DBE86D000FBD38 /* ApartmentCell.swift in Sources */,
 				ED2C026F25DB90D6000FBD38 /* ViewController.swift in Sources */,
+				ED2C02BD25DD5EEC000FBD38 /* RoomResponseString.swift in Sources */,
 				ED2C029825DB97CF000FBD38 /* UIColor+Extensions.swift in Sources */,
 				ED2C02A525DBEACF000FBD38 /* UILabel+Extensions.swift in Sources */,
 				ED2C029425DB96B0000FBD38 /* UIButton+Extensions.swift in Sources */,

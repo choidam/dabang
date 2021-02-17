@@ -176,9 +176,18 @@ extension UIViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - read Textfile
 extension ViewController {
     private func readTextFile(){
-        let path = Bundle.main.path(forResource: "RoomListData", ofType: "txt")
-        let url = URL(fileURLWithPath: path!)
-        let contentString = try! NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue)
-        print(contentString)
+        if let filepath = Bundle.main.path(forResource: "RoomListData", ofType: "txt") {
+            do {
+                let contents = try String(contentsOfFile: filepath)
+                guard let data = contents.data(using: .utf8) else { return }
+                let decoder = JSONDecoder()
+                let roomData = try decoder.decode(RoomResponseString.self, from: data)
+                print(roomData.rooms[0].desc)
+            } catch {
+                print("bad file")
+            }
+        } else {
+            print("roadTextFile error")
+        }
     }
 }
