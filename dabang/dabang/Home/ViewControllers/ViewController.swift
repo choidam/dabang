@@ -75,6 +75,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        readTextFile()
     }
 }
 
@@ -167,7 +168,17 @@ extension UIViewController: UITableViewDelegate, UITableViewDataSource {
         return 10
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ApartmentCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: RoomCell.identifier, for: indexPath)
         return cell
+    }
+}
+
+// MARK: - read Textfile
+extension ViewController {
+    private func readTextFile(){
+        let path = Bundle.main.path(forResource: "RoomListData", ofType: "txt")
+        let url = URL(fileURLWithPath: path!)
+        let contentString = try! NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue)
+        print(contentString)
     }
 }

@@ -20,6 +20,7 @@
 		ED2C029F25DBE86D000FBD38 /* ApartmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C029E25DBE86D000FBD38 /* ApartmentCell.swift */; };
 		ED2C02A225DBE90D000FBD38 /* AveragePriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C02A125DBE90D000FBD38 /* AveragePriceCell.swift */; };
 		ED2C02A525DBEACF000FBD38 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2C02A425DBEACF000FBD38 /* UILabel+Extensions.swift */; };
+		ED2C02B925DD59B7000FBD38 /* RoomListData.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED2C02B825DD59B7000FBD38 /* RoomListData.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		ED2C029E25DBE86D000FBD38 /* ApartmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCell.swift; sourceTree = "<group>"; };
 		ED2C02A125DBE90D000FBD38 /* AveragePriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AveragePriceCell.swift; sourceTree = "<group>"; };
 		ED2C02A425DBEACF000FBD38 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		ED2C02B825DD59B7000FBD38 /* RoomListData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RoomListData.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				ED2C028825DB92C9000FBD38 /* .swiftlint.yml */,
 				ED2C027825DB90D8000FBD38 /* Info.plist */,
+				ED2C02B825DD59B7000FBD38 /* RoomListData.txt */,
 				ED2C028F25DB934B000FBD38 /* Home */,
 				ED2C028E25DB933A000FBD38 /* Resources */,
 				ED2C028D25DB9324000FBD38 /* Helper */,
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED2C028925DB92C9000FBD38 /* .swiftlint.yml in Resources */,
+				ED2C02B925DD59B7000FBD38 /* RoomListData.txt in Resources */,
 				ED2C027725DB90D8000FBD38 /* LaunchScreen.storyboard in Resources */,
 				ED2C027425DB90D8000FBD38 /* Assets.xcassets in Resources */,
 			);
