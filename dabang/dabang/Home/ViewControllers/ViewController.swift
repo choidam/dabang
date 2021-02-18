@@ -87,8 +87,11 @@ class ViewController: UIViewController {
         $0.register(AveragePriceCell.self, forCellReuseIdentifier: AveragePriceCell.identifier)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var roomDataSet: [Room] = []
-    var roomAllDataSet: [Room] = []
+    var roomDataSet: [RoomStruct] = []
+    var roomAllDataSet: [RoomStruct] = []
+
+//    var roomStructDataSet: [RoomStruct] = []
+
     var roomKindCount: Int = 4
     var sellingTypeCount: Int = 3
     override func viewDidLoad() {
@@ -235,9 +238,6 @@ extension ViewController {
                     for hashtag in room.hashTags {
                         hashtags.append(hashtag)
                     }
-                    self.roomDataSet.append(Room(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL))
-                    self.roomAllDataSet.append(Room(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL))
-
                     var tmp = ""
                     var price = 0
                     for ch in room.priceTitle {
@@ -256,9 +256,10 @@ extension ViewController {
                             }
                         }
                     }
-                    print(room.priceTitle, " ", price)
-
+                    self.roomAllDataSet.append(RoomStruct(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL, price: price))
+                    self.roomDataSet.append(RoomStruct(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL, price: price))
                 }
+                self.roomDataSet = self.roomDataSet.sorted{($0.price < $1.price) }
                 self.dabangTableView.reloadData()
             } catch let e as NSError{
                 print(e.localizedDescription)
@@ -282,7 +283,6 @@ extension ViewController {
                 sender.setButtonUnclick()
                 self.roomDataSet.removeAll(where: {$0.roomType == sender.tag})
                 self.dabangTableView.reloadData()
-
             }
         } else {
             self.roomKindCount += 1
@@ -323,9 +323,13 @@ extension ViewController {
         if sender.backgroundColor == UIColor.lightBlue {
             sender.setButtonUnclick()
             sender.setTitle("내림차순", for: .normal)
+            self.roomDataSet = self.roomDataSet.sorted{($0.price > $1.price) }
+            self.dabangTableView.reloadData()
         } else {
             sender.setButtonClick()
             sender.setTitle("오름차순", for: .normal)
+            self.roomDataSet = self.roomDataSet.sorted{($0.price < $1.price) }
+            self.dabangTableView.reloadData()
         }
     }
 }
