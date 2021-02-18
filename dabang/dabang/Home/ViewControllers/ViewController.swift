@@ -18,22 +18,26 @@ class ViewController: UIViewController {
     }
     var oneRoomButton = UIButton().then {
         $0.setTitle("원룸", for: .normal)
-        $0.addTarget(self, action: #selector(pressOneRoomButton(_:)), for: .touchUpInside)
+        $0.tag = 0
+        $0.addTarget(self, action: #selector(pressRoomKindButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var twoRoomButton = UIButton().then {
         $0.setTitle("투쓰리룸", for: .normal)
-        $0.addTarget(self, action: #selector(pressTwoThreeRoomButton(_:)), for: .touchUpInside)
+        $0.tag = 1
+        $0.addTarget(self, action: #selector(pressRoomKindButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var officetelButton = UIButton().then {
         $0.setTitle("오피스텔", for: .normal)
-        $0.addTarget(self, action: #selector(pressOfficetelButton(_:)), for: .touchUpInside)
+        $0.tag = 2
+        $0.addTarget(self, action: #selector(pressRoomKindButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var apartmentButton = UIButton().then {
         $0.setTitle("아파트", for: .normal)
-        $0.addTarget(self, action: #selector(pressApartmentButton(_:)), for: .touchUpInside)
+        $0.tag = 3
+        $0.addTarget(self, action: #selector(pressRoomKindButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var forsaleLabel = UILabel().then {
@@ -44,17 +48,20 @@ class ViewController: UIViewController {
     }
     var monthlyRentButton = UIButton().then {
         $0.setTitle("월세", for: .normal)
-        $0.addTarget(self, action: #selector(pressMonthlyRentButton(_:)), for: .touchUpInside)
+        $0.tag = 4
+        $0.addTarget(self, action: #selector(pressSellingTypeButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var jeonseButton = UIButton().then {
         $0.setTitle("전세", for: .normal)
-        $0.addTarget(self, action: #selector(pressJeonseButton(_:)), for: .touchUpInside)
+        $0.tag = 5
+        $0.addTarget(self, action: #selector(pressSellingTypeButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var tradingButton = UIButton().then {
         $0.setTitle("매매", for: .normal)
-        $0.addTarget(self, action: #selector(pressTradingButton(_:)), for: .touchUpInside)
+        $0.tag = 6
+        $0.addTarget(self, action: #selector(pressSellingTypeButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var priceLabel = UILabel().then {
@@ -82,6 +89,8 @@ class ViewController: UIViewController {
     }
     var roomDataSet: [Room] = []
     var roomAllDataSet: [Room] = []
+    var roomKindCount: Int = 4
+    var sellingTypeCount: Int = 3
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -241,14 +250,23 @@ extension ViewController {
 
 // MARK: - Press Button
 extension ViewController {
-    @objc func pressOneRoomButton(_ sender: UIButton){
+    @objc func pressRoomKindButton(_ sender: UIButton){
         if sender.backgroundColor == UIColor.lightBlue {
-            sender.setButtonUnclick()
-            self.roomDataSet.removeAll(where: {$0.roomType == 0})
-            self.dabangTableView.reloadData()
+            if self.roomKindCount == 1 {
+                let alert = UIAlertController(title: "warning", message: "하나 이상 선택해주세요", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            } else {
+                self.roomKindCount -= 1
+                sender.setButtonUnclick()
+                self.roomDataSet.removeAll(where: {$0.roomType == sender.tag})
+                self.dabangTableView.reloadData()
+
+            }
         } else {
+            self.roomKindCount += 1
             for room in roomAllDataSet {
-                if room.roomType == 0 {
+                if room.roomType == sender.tag {
                     self.roomDataSet.append(room)
                 }
             }
@@ -256,69 +274,27 @@ extension ViewController {
             sender.setButtonClick()
         }
     }
-    @objc func pressTwoThreeRoomButton(_ sender: UIButton){
+    @objc func pressSellingTypeButton(_ sender: UIButton){
+        let sellingTypeIndex = sender.tag - 4
         if sender.backgroundColor == UIColor.lightBlue {
-            sender.setButtonUnclick()
-            self.roomDataSet.removeAll(where: {$0.roomType == 1})
-            self.dabangTableView.reloadData()
+            if self.sellingTypeCount == 1 {
+                let alert = UIAlertController(title: "warning", message: "하나 이상 선택해주세요", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            } else {
+                self.sellingTypeCount -= 1
+                sender.setButtonUnclick()
+                self.roomDataSet.removeAll(where: {$0.sellingType == sellingTypeIndex})
+                self.dabangTableView.reloadData()
+            }
         } else {
+            self.sellingTypeCount += 1
             for room in roomAllDataSet {
-                if room.roomType == 1 {
+                if room.sellingType == sellingTypeIndex {
                     self.roomDataSet.append(room)
                 }
             }
             self.dabangTableView.reloadData()
-            sender.setButtonClick()
-        }
-    }
-    @objc func pressOfficetelButton(_ sender: UIButton){
-        if sender.backgroundColor == UIColor.lightBlue {
-            sender.setButtonUnclick()
-            self.roomDataSet.removeAll(where: {$0.roomType == 2})
-            self.dabangTableView.reloadData()
-        } else {
-            for room in roomAllDataSet {
-                if room.roomType == 2 {
-                    self.roomDataSet.append(room)
-                }
-            }
-            self.dabangTableView.reloadData()
-            sender.setButtonClick()
-        }
-    }
-    @objc func pressApartmentButton(_ sender: UIButton){
-        if sender.backgroundColor == UIColor.lightBlue {
-            sender.setButtonUnclick()
-            self.roomDataSet.removeAll(where: {$0.roomType == 3})
-            self.dabangTableView.reloadData()
-        } else {
-            for room in roomAllDataSet {
-                if room.roomType == 3 {
-                    self.roomDataSet.append(room)
-                }
-            }
-            self.dabangTableView.reloadData()
-            sender.setButtonClick()
-        }
-    }
-    @objc func pressMonthlyRentButton(_ sender: UIButton){
-        if sender.backgroundColor == UIColor.lightBlue {
-            sender.setButtonUnclick()
-        } else {
-            sender.setButtonClick()
-        }
-    }
-    @objc func pressJeonseButton(_ sender: UIButton){
-        if sender.backgroundColor == UIColor.lightBlue {
-            sender.setButtonUnclick()
-        } else {
-            sender.setButtonClick()
-        }
-    }
-    @objc func pressTradingButton(_ sender: UIButton){
-        if sender.backgroundColor == UIColor.lightBlue {
-            sender.setButtonUnclick()
-        } else {
             sender.setButtonClick()
         }
     }
