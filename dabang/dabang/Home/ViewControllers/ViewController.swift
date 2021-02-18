@@ -237,6 +237,27 @@ extension ViewController {
                     }
                     self.roomDataSet.append(Room(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL))
                     self.roomAllDataSet.append(Room(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL))
+
+                    var tmp = ""
+                    var price = 0
+                    for ch in room.priceTitle {
+                        if ch.isNumber == true {
+                            tmp.append(ch)
+                        } else {
+                            if ch == "억" {
+                                price += Int(tmp)!*10000
+                                tmp = ""
+                            } else if ch == "천" {
+                                price += Int(tmp)!*1000
+                                continue
+                            } else if ch == "만" {
+                                price += Int(tmp)!
+                                continue
+                            }
+                        }
+                    }
+                    print(room.priceTitle, " ", price)
+
                 }
                 self.dabangTableView.reloadData()
             } catch let e as NSError{
