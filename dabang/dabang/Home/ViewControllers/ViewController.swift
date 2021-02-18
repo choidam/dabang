@@ -81,6 +81,7 @@ class ViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var roomDataSet: [Room] = []
+    var roomAllDataSet: [Room] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -226,6 +227,7 @@ extension ViewController {
                         hashtags.append(hashtag)
                     }
                     self.roomDataSet.append(Room(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL))
+                    self.roomAllDataSet.append(Room(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL))
                 }
                 self.dabangTableView.reloadData()
             } catch let e as NSError{
@@ -242,28 +244,60 @@ extension ViewController {
     @objc func pressOneRoomButton(_ sender: UIButton){
         if sender.backgroundColor == UIColor.lightBlue {
             sender.setButtonUnclick()
+            self.roomDataSet.removeAll(where: {$0.roomType == 0})
+            self.dabangTableView.reloadData()
         } else {
+            for room in roomAllDataSet {
+                if room.roomType == 0 {
+                    self.roomDataSet.append(room)
+                }
+            }
+            self.dabangTableView.reloadData()
             sender.setButtonClick()
         }
     }
     @objc func pressTwoThreeRoomButton(_ sender: UIButton){
         if sender.backgroundColor == UIColor.lightBlue {
             sender.setButtonUnclick()
+            self.roomDataSet.removeAll(where: {$0.roomType == 1})
+            self.dabangTableView.reloadData()
         } else {
+            for room in roomAllDataSet {
+                if room.roomType == 1 {
+                    self.roomDataSet.append(room)
+                }
+            }
+            self.dabangTableView.reloadData()
             sender.setButtonClick()
         }
     }
     @objc func pressOfficetelButton(_ sender: UIButton){
         if sender.backgroundColor == UIColor.lightBlue {
             sender.setButtonUnclick()
+            self.roomDataSet.removeAll(where: {$0.roomType == 2})
+            self.dabangTableView.reloadData()
         } else {
+            for room in roomAllDataSet {
+                if room.roomType == 2 {
+                    self.roomDataSet.append(room)
+                }
+            }
+            self.dabangTableView.reloadData()
             sender.setButtonClick()
         }
     }
     @objc func pressApartmentButton(_ sender: UIButton){
         if sender.backgroundColor == UIColor.lightBlue {
             sender.setButtonUnclick()
+            self.roomDataSet.removeAll(where: {$0.roomType == 3})
+            self.dabangTableView.reloadData()
         } else {
+            for room in roomAllDataSet {
+                if room.roomType == 3 {
+                    self.roomDataSet.append(room)
+                }
+            }
+            self.dabangTableView.reloadData()
             sender.setButtonClick()
         }
     }
