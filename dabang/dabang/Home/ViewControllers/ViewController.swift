@@ -72,6 +72,7 @@ class ViewController: UIViewController {
         $0.register(AveragePriceCell.self, forCellReuseIdentifier: AveragePriceCell.identifier)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    var roomDataSet: [Room] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -163,13 +164,42 @@ extension ViewController {
 }
 
 // MARK: - dabang TableView
-extension UIViewController: UITableViewDelegate, UITableViewDataSource {
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.roomDataSet.count
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RoomCell.identifier, for: indexPath)
-        return cell
+        if self.roomDataSet[indexPath.row].roomType == 0 || self.roomDataSet[indexPath.row].roomType == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: RoomCell.identifier, for: indexPath) as! RoomCell
+            cell.priceLabel.text = self.roomDataSet[indexPath.row].priceTitle
+            if self.roomDataSet[indexPath.row].roomType == 0 {
+                cell.roomTypeLabel.text = "원룸"
+            } else {
+                cell.roomTypeLabel.text = "투쓰리룸"
+            }
+            cell.descLabel.text = self.roomDataSet[indexPath.row].desc
+            if self.roomDataSet[indexPath.row].isCheck == false {
+                cell.checkImageView.image = UIImage(named: "star_empty")
+            } else {
+                cell.checkImageView.image = UIImage(named: "star_fill")
+            }
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ApartmentCell.identifier, for: indexPath) as! ApartmentCell
+            cell.priceLabel.text = self.roomDataSet[indexPath.row].priceTitle
+            if self.roomDataSet[indexPath.row].roomType == 2 {
+                cell.roomTypeLabel.text = "오피스텔"
+            } else {
+                cell.roomTypeLabel.text = "아파트"
+            }
+            cell.descLabel.text = self.roomDataSet[indexPath.row].desc
+            if self.roomDataSet[indexPath.row].isCheck == false {
+                cell.checkImageView.image = UIImage(named: "star_empty")
+            } else {
+                cell.checkImageView.image = UIImage(named: "star_fill")
+            }
+            return cell
+        }
     }
 }
 
@@ -182,12 +212,19 @@ extension ViewController {
                 guard let data = contents.data(using: .utf8) else { return }
                 let decoder = JSONDecoder()
                 let roomData = try decoder.decode(RoomResponseString.self, from: data)
-                print(roomData.rooms[0].desc)
-            } catch {
-                print("bad file")
+                for room in roomData.rooms {
+                    var hashtags: [String] = []
+                    for hashtag in room.hashTags {
+                        hashtags.append(hashtag)
+                    }
+                    self.roomDataSet.append(Room(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL))
+                }
+                self.dabangTableView.reloadData()
+            } catch let e as NSError{
+                print(e.localizedDescription)
             }
         } else {
-            print("roadTextFile error")
+            print("roadTextFile filepath error")
         }
     }
 }

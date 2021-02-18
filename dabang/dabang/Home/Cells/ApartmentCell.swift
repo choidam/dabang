@@ -21,19 +21,15 @@ class ApartmentCell: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var checkImageView = UIImageView().then {
-        $0.image = UIImage(named: "star_fill")
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var priceLabel = UILabel().then {
-        $0.text = "월세 1000/50"
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var roomTypeLabel = UILabel().then {
-        $0.text = "아파트"
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var descLabel = UILabel().then {
-        $0.text = "여의도 역세권 가격도 저렴한 도보 10분 안전 보장~~~!"
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
