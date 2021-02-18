@@ -18,18 +18,22 @@ class ViewController: UIViewController {
     }
     var oneRoomButton = UIButton().then {
         $0.setTitle("원룸", for: .normal)
+        $0.addTarget(self, action: #selector(pressOneRoomButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var twoRoomButton = UIButton().then {
         $0.setTitle("투쓰리룸", for: .normal)
+        $0.addTarget(self, action: #selector(pressTwoThreeRoomButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var officetelButton = UIButton().then {
         $0.setTitle("오피스텔", for: .normal)
+        $0.addTarget(self, action: #selector(pressOfficetelButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var apartmentButton = UIButton().then {
         $0.setTitle("아파트", for: .normal)
+        $0.addTarget(self, action: #selector(pressApartmentButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var forsaleLabel = UILabel().then {
@@ -40,14 +44,17 @@ class ViewController: UIViewController {
     }
     var monthlyRentButton = UIButton().then {
         $0.setTitle("월세", for: .normal)
+        $0.addTarget(self, action: #selector(pressMonthlyRentButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var jeonseButton = UIButton().then {
         $0.setTitle("전세", for: .normal)
+        $0.addTarget(self, action: #selector(pressJeonseButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var tradingButton = UIButton().then {
         $0.setTitle("매매", for: .normal)
+        $0.addTarget(self, action: #selector(pressTradingButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var priceLabel = UILabel().then {
@@ -56,8 +63,9 @@ class ViewController: UIViewController {
         $0.textColor = .black
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var ascendingButton = UIButton().then {
+    var priceSortButton = UIButton().then {
         $0.setTitle("오름차순", for: .normal)
+        $0.addTarget(self, action: #selector(pressPriceSortButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var divideLine = UIView().then {
@@ -141,9 +149,9 @@ extension ViewController {
             $0.leading.equalTo(201)
             $0.centerY.equalTo(forsaleLabel.snp.centerY)
         }
-        self.view.addSubview(ascendingButton)
-        ascendingButton.setButtonClick()
-        ascendingButton.snp.makeConstraints{
+        self.view.addSubview(priceSortButton)
+        priceSortButton.setButtonClick()
+        priceSortButton.snp.makeConstraints{
             $0.leading.equalTo(201)
             $0.centerY.equalTo(monthlyRentButton.snp.centerY)
         }
@@ -225,6 +233,68 @@ extension ViewController {
             }
         } else {
             print("roadTextFile filepath error")
+        }
+    }
+}
+
+// MARK: - Press Button
+extension ViewController {
+    @objc func pressOneRoomButton(_ sender: UIButton){
+        if sender.backgroundColor == UIColor.lightBlue {
+            sender.setButtonUnclick()
+        } else {
+            sender.setButtonClick()
+        }
+    }
+    @objc func pressTwoThreeRoomButton(_ sender: UIButton){
+        if sender.backgroundColor == UIColor.lightBlue {
+            sender.setButtonUnclick()
+        } else {
+            sender.setButtonClick()
+        }
+    }
+    @objc func pressOfficetelButton(_ sender: UIButton){
+        if sender.backgroundColor == UIColor.lightBlue {
+            sender.setButtonUnclick()
+        } else {
+            sender.setButtonClick()
+        }
+    }
+    @objc func pressApartmentButton(_ sender: UIButton){
+        if sender.backgroundColor == UIColor.lightBlue {
+            sender.setButtonUnclick()
+        } else {
+            sender.setButtonClick()
+        }
+    }
+    @objc func pressMonthlyRentButton(_ sender: UIButton){
+        if sender.backgroundColor == UIColor.lightBlue {
+            sender.setButtonUnclick()
+        } else {
+            sender.setButtonClick()
+        }
+    }
+    @objc func pressJeonseButton(_ sender: UIButton){
+        if sender.backgroundColor == UIColor.lightBlue {
+            sender.setButtonUnclick()
+        } else {
+            sender.setButtonClick()
+        }
+    }
+    @objc func pressTradingButton(_ sender: UIButton){
+        if sender.backgroundColor == UIColor.lightBlue {
+            sender.setButtonUnclick()
+        } else {
+            sender.setButtonClick()
+        }
+    }
+    @objc func pressPriceSortButton(_ sender: UIButton){
+        if sender.backgroundColor == UIColor.lightBlue {
+            sender.setButtonUnclick()
+            sender.setTitle("내림차순", for: .normal)
+        } else {
+            sender.setButtonClick()
+            sender.setTitle("오름차순", for: .normal)
         }
     }
 }
