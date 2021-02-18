@@ -89,9 +89,7 @@ class ViewController: UIViewController {
     }
     var roomDataSet: [RoomStruct] = []
     var roomAllDataSet: [RoomStruct] = []
-
-//    var roomStructDataSet: [RoomStruct] = []
-
+    var isAscendingSort: Bool = true
     var roomKindCount: Int = 4
     var sellingTypeCount: Int = 3
     override func viewDidLoad() {
@@ -272,6 +270,14 @@ extension ViewController {
 
 // MARK: - Press Button
 extension ViewController {
+    private func sortRoomData(){
+        if self.isAscendingSort == true {
+            self.roomDataSet = self.roomDataSet.sorted{($0.price < $1.price) }
+        } else {
+            self.roomDataSet = self.roomDataSet.sorted{($0.price > $1.price) }
+        }
+    }
+
     @objc func pressRoomKindButton(_ sender: UIButton){
         if sender.backgroundColor == UIColor.lightBlue {
             if self.roomKindCount == 1 {
@@ -282,6 +288,7 @@ extension ViewController {
                 self.roomKindCount -= 1
                 sender.setButtonUnclick()
                 self.roomDataSet.removeAll(where: {$0.roomType == sender.tag})
+                self.sortRoomData()
                 self.dabangTableView.reloadData()
             }
         } else {
@@ -291,6 +298,7 @@ extension ViewController {
                     self.roomDataSet.append(room)
                 }
             }
+            self.sortRoomData()
             self.dabangTableView.reloadData()
             sender.setButtonClick()
         }
@@ -306,6 +314,7 @@ extension ViewController {
                 self.sellingTypeCount -= 1
                 sender.setButtonUnclick()
                 self.roomDataSet.removeAll(where: {$0.sellingType == sellingTypeIndex})
+                self.sortRoomData()
                 self.dabangTableView.reloadData()
             }
         } else {
@@ -315,20 +324,23 @@ extension ViewController {
                     self.roomDataSet.append(room)
                 }
             }
+            self.sortRoomData()
             self.dabangTableView.reloadData()
             sender.setButtonClick()
         }
     }
     @objc func pressPriceSortButton(_ sender: UIButton){
         if sender.backgroundColor == UIColor.lightBlue {
+            self.isAscendingSort = false
             sender.setButtonUnclick()
             sender.setTitle("내림차순", for: .normal)
-            self.roomDataSet = self.roomDataSet.sorted{($0.price > $1.price) }
+            self.sortRoomData()
             self.dabangTableView.reloadData()
         } else {
+            self.isAscendingSort = true
             sender.setButtonClick()
             sender.setTitle("오름차순", for: .normal)
-            self.roomDataSet = self.roomDataSet.sorted{($0.price < $1.price) }
+            self.sortRoomData()
             self.dabangTableView.reloadData()
         }
     }
