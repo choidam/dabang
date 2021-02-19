@@ -32,6 +32,22 @@ class ApartmentCell: UITableViewCell {
     var descLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+    var hashtag1 = UIButton().then {
+        $0.setTitle("주차", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    var hashtag2 = UIButton().then {
+        $0.setTitle("주차", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    var hashtag3 = UIButton().then {
+        $0.setTitle("주차", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    var hashtag4 = UIButton().then {
+        $0.setTitle("주차", for: .normal)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -81,6 +97,30 @@ extension ApartmentCell {
             $0.leading.equalTo(roomImageView.snp.trailing).offset(34)
             $0.trailing.equalTo(-24)
             $0.top.equalTo(roomTypeLabel.snp.bottom)
+        }
+        addSubview(hashtag1)
+        hashtag1.setHashtag()
+        hashtag1.snp.makeConstraints{
+            $0.leading.equalTo(roomImageView.snp.trailing).offset(34)
+            $0.top.equalTo(descLabel.snp.bottom).offset(4)
+        }
+        addSubview(hashtag2)
+        hashtag2.setHashtag()
+        hashtag2.snp.makeConstraints{
+            $0.centerY.equalTo(hashtag1.snp.centerY)
+            $0.leading.equalTo(hashtag1.snp.trailing).offset(5)
+        }
+        addSubview(hashtag3)
+        hashtag3.setHashtag()
+        hashtag3.snp.makeConstraints{
+            $0.centerY.equalTo(hashtag1.snp.centerY)
+            $0.leading.equalTo(hashtag2.snp.trailing).offset(5)
+        }
+        addSubview(hashtag4)
+        hashtag4.setHashtag()
+        hashtag4.snp.makeConstraints{
+            $0.centerY.equalTo(hashtag1.snp.centerY)
+            $0.leading.equalTo(hashtag3.snp.trailing).offset(5)
         }
     }
 }
