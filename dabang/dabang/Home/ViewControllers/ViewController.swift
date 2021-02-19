@@ -92,6 +92,7 @@ class ViewController: UIViewController {
     var isAscendingSort: Bool = true
     var roomKindCount: Int = 4
     var sellingTypeCount: Int = 3
+    var average: [Average] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -202,6 +203,33 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell.checkImageView.image = UIImage(named: "star_fill")
             }
+            let hashTagCount = self.roomDataSet[indexPath.row].hashTags.count
+            if hashTagCount == 0 {
+                cell.hashtag1.isHidden = true
+                cell.hashtag2.isHidden = true
+                cell.hashtag3.isHidden = true
+                cell.hashtag4.isHidden = true
+            } else if hashTagCount == 1 {
+                cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
+                cell.hashtag2.isHidden = true
+                cell.hashtag3.isHidden = true
+                cell.hashtag4.isHidden = true
+            } else if hashTagCount == 2 {
+                cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
+                cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
+                cell.hashtag3.isHidden = true
+                cell.hashtag4.isHidden = true
+            } else if hashTagCount == 3 {
+                cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
+                cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
+                cell.hashtag3.setTitle(self.roomDataSet[indexPath.row].hashTags[2], for: .normal)
+                cell.hashtag4.isHidden = true
+            } else {
+                cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
+                cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
+                cell.hashtag3.setTitle(self.roomDataSet[indexPath.row].hashTags[2], for: .normal)
+                cell.hashtag4.setTitle(self.roomDataSet[indexPath.row].hashTags[3], for: .normal)
+            }
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: ApartmentCell.identifier, for: indexPath) as! ApartmentCell
@@ -217,6 +245,33 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell.checkImageView.image = UIImage(named: "star_fill")
             }
+            let hashTagCount = self.roomDataSet[indexPath.row].hashTags.count
+            if hashTagCount == 0 {
+                cell.hashtag1.isHidden = true
+                cell.hashtag2.isHidden = true
+                cell.hashtag3.isHidden = true
+                cell.hashtag4.isHidden = true
+            } else if hashTagCount == 1 {
+                cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
+                cell.hashtag2.isHidden = true
+                cell.hashtag3.isHidden = true
+                cell.hashtag4.isHidden = true
+            } else if hashTagCount == 2 {
+                cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
+                cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
+                cell.hashtag3.isHidden = true
+                cell.hashtag4.isHidden = true
+            } else if hashTagCount == 3 {
+                cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
+                cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
+                cell.hashtag3.setTitle(self.roomDataSet[indexPath.row].hashTags[2], for: .normal)
+                cell.hashtag4.isHidden = true
+            } else {
+                cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
+                cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
+                cell.hashtag3.setTitle(self.roomDataSet[indexPath.row].hashTags[2], for: .normal)
+                cell.hashtag4.setTitle(self.roomDataSet[indexPath.row].hashTags[3], for: .normal)
+            }
             return cell
         }
     }
@@ -231,6 +286,7 @@ extension ViewController {
                 guard let data = contents.data(using: .utf8) else { return }
                 let decoder = JSONDecoder()
                 let roomData = try decoder.decode(RoomResponseString.self, from: data)
+                self.average.append(contentsOf: roomData.average)
                 for room in roomData.rooms {
                     var hashtags: [String] = []
                     for hashtag in room.hashTags {

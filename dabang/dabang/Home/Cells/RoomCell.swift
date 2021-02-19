@@ -33,19 +33,15 @@ class RoomCell: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var hashtag1 = UIButton().then {
-        $0.setTitle("주차", for: .normal)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var hashtag2 = UIButton().then {
-        $0.setTitle("주차", for: .normal)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var hashtag3 = UIButton().then {
-        $0.setTitle("주차", for: .normal)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var hashtag4 = UIButton().then {
-        $0.setTitle("주차", for: .normal)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
