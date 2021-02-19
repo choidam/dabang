@@ -89,10 +89,14 @@ class ViewController: UIViewController {
     }
     var roomDataSet: [RoomStruct] = []
     var roomAllDataSet: [RoomStruct] = []
+    var average: [Average] = []
+
     var isAscendingSort: Bool = true
     var roomKindCount: Int = 4
     var sellingTypeCount: Int = 3
-    var average: [Average] = []
+
+    var limitCount: Int = 12
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -275,10 +279,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // last cell
+        if indexPath.row == self.roomDataSet.count - 1 {
+            if self.roomDataSet.count + 12 < self.roomAllDataSet.count {
+                var index = self.roomDataSet.count
+                limitCount = index + 12
+                while index < limitCount {
+                    self.roomDataSet.append(self.roomAllDataSet[index])
+                    index += 1
+                }
+                self.perform(#selector(reloadTableView), with: nil, afterDelay: 1.0)
+            }
+        }
+    }
 }
 
 // MARK: - read Textfile
 extension ViewController {
+    @objc func reloadTableView(){
+        self.dabangTableView.reloadData()
+    }
     private func readTextFile(){
         if let filepath = Bundle.main.path(forResource: "RoomListData", ofType: "txt") {
             do {
@@ -311,8 +333,14 @@ extension ViewController {
                         }
                     }
                     self.roomAllDataSet.append(RoomStruct(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL, price: price))
-                    self.roomDataSet.append(RoomStruct(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL, price: price))
                 }
+
+                var index = 0
+                while index < limitCount {
+                    self.roomDataSet.append(self.roomAllDataSet[index])
+                    index += 1
+                }
+
                 self.roomDataSet = self.roomDataSet.sorted{($0.price < $1.price) }
                 self.dabangTableView.reloadData()
             } catch let e as NSError{
@@ -350,7 +378,7 @@ extension ViewController {
         } else {
             self.roomKindCount += 1
             for room in roomAllDataSet {
-                if room.roomType == sender.tag {
+                if room.roomType == sender.tag && self.roomDataSet.count < limitCount{
                     self.roomDataSet.append(room)
                 }
             }
