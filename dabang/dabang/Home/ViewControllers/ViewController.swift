@@ -90,13 +90,10 @@ class ViewController: UIViewController {
     var roomDataSet: [RoomStruct] = []
     var roomAllDataSet: [RoomStruct] = []
     var average: [Average] = []
-
     var isAscendingSort: Bool = true
     var roomKindCount: Int = 4
     var sellingTypeCount: Int = 3
-
     var limitCount: Int = 12
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -208,109 +205,103 @@ extension ViewController {
 
 // MARK: - dabang TableView
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return self.roomDataSet.count
-        } else {
-            return 1
-        }
+        return self.roomDataSet.count + (self.roomDataSet.count/12)
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if self.roomDataSet[indexPath.row].roomType == 0 || self.roomDataSet[indexPath.row].roomType == 1{
-                let cell = tableView.dequeueReusableCell(withIdentifier: RoomCell.identifier, for: indexPath) as! RoomCell
-                cell.priceLabel.text = self.roomDataSet[indexPath.row].priceTitle
-                if self.roomDataSet[indexPath.row].roomType == 0 {
-                    cell.roomTypeLabel.text = "원룸"
-                } else {
-                    cell.roomTypeLabel.text = "투쓰리룸"
-                }
-                cell.descLabel.text = self.roomDataSet[indexPath.row].desc
-                if self.roomDataSet[indexPath.row].isCheck == false {
-                    cell.checkImageView.image = UIImage(named: "star_empty")
-                } else {
-                    cell.checkImageView.image = UIImage(named: "star_fill")
-                }
-                let hashTagCount = self.roomDataSet[indexPath.row].hashTags.count
-                if hashTagCount == 0 {
-                    cell.hashtag1.isHidden = true
-                    cell.hashtag2.isHidden = true
-                    cell.hashtag3.isHidden = true
-                    cell.hashtag4.isHidden = true
-                } else if hashTagCount == 1 {
-                    cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
-                    cell.hashtag2.isHidden = true
-                    cell.hashtag3.isHidden = true
-                    cell.hashtag4.isHidden = true
-                } else if hashTagCount == 2 {
-                    cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
-                    cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
-                    cell.hashtag3.isHidden = true
-                    cell.hashtag4.isHidden = true
-                } else if hashTagCount == 3 {
-                    cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
-                    cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
-                    cell.hashtag3.setTitle(self.roomDataSet[indexPath.row].hashTags[2], for: .normal)
-                    cell.hashtag4.isHidden = true
-                } else {
-                    cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
-                    cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
-                    cell.hashtag3.setTitle(self.roomDataSet[indexPath.row].hashTags[2], for: .normal)
-                    cell.hashtag4.setTitle(self.roomDataSet[indexPath.row].hashTags[3], for: .normal)
-                }
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: ApartmentCell.identifier, for: indexPath) as! ApartmentCell
-                cell.priceLabel.text = self.roomDataSet[indexPath.row].priceTitle
-                if self.roomDataSet[indexPath.row].roomType == 2 {
-                    cell.roomTypeLabel.text = "오피스텔"
-                } else {
-                    cell.roomTypeLabel.text = "아파트"
-                }
-                cell.descLabel.text = self.roomDataSet[indexPath.row].desc
-                if self.roomDataSet[indexPath.row].isCheck == false {
-                    cell.checkImageView.image = UIImage(named: "star_empty")
-                } else {
-                    cell.checkImageView.image = UIImage(named: "star_fill")
-                }
-                let hashTagCount = self.roomDataSet[indexPath.row].hashTags.count
-                if hashTagCount == 0 {
-                    cell.hashtag1.isHidden = true
-                    cell.hashtag2.isHidden = true
-                    cell.hashtag3.isHidden = true
-                    cell.hashtag4.isHidden = true
-                } else if hashTagCount == 1 {
-                    cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
-                    cell.hashtag2.isHidden = true
-                    cell.hashtag3.isHidden = true
-                    cell.hashtag4.isHidden = true
-                } else if hashTagCount == 2 {
-                    cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
-                    cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
-                    cell.hashtag3.isHidden = true
-                    cell.hashtag4.isHidden = true
-                } else if hashTagCount == 3 {
-                    cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
-                    cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
-                    cell.hashtag3.setTitle(self.roomDataSet[indexPath.row].hashTags[2], for: .normal)
-                    cell.hashtag4.isHidden = true
-                } else {
-                    cell.hashtag1.setTitle(self.roomDataSet[indexPath.row].hashTags[0], for: .normal)
-                    cell.hashtag2.setTitle(self.roomDataSet[indexPath.row].hashTags[1], for: .normal)
-                    cell.hashtag3.setTitle(self.roomDataSet[indexPath.row].hashTags[2], for: .normal)
-                    cell.hashtag4.setTitle(self.roomDataSet[indexPath.row].hashTags[3], for: .normal)
-                }
-                return cell
-            }
-        } else {
+        if (indexPath.row+1)%13 == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AveragePriceCell.identifier, for: indexPath) as! AveragePriceCell
             cell.addressLabel.text = self.average[0].name
             cell.monthPriceLabel.text = self.average[0].monthPrice
             cell.jeonsePriceLabel.text = self.average[0].yearPrice
             return cell
+        } else {
+            let idx = indexPath.row - (indexPath.row/12)
+            if self.roomDataSet[idx].roomType == 0 || self.roomDataSet[idx].roomType == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: RoomCell.identifier, for: indexPath) as! RoomCell
+                cell.priceLabel.text = self.roomDataSet[idx].priceTitle
+                if self.roomDataSet[idx].roomType == 0 {
+                    cell.roomTypeLabel.text = "원룸"
+                } else {
+                    cell.roomTypeLabel.text = "투쓰리룸"
+                }
+                cell.descLabel.text = self.roomDataSet[idx].desc
+                if self.roomDataSet[idx].isCheck == false {
+                    cell.checkImageView.image = UIImage(named: "star_empty")
+                } else {
+                    cell.checkImageView.image = UIImage(named: "star_fill")
+                }
+                let hashTagCount = self.roomDataSet[idx].hashTags.count
+                if hashTagCount == 0 {
+                    cell.hashtag1.isHidden = true
+                    cell.hashtag2.isHidden = true
+                    cell.hashtag3.isHidden = true
+                    cell.hashtag4.isHidden = true
+                } else if hashTagCount == 1 {
+                    cell.hashtag1.setTitle(self.roomDataSet[idx].hashTags[0], for: .normal)
+                    cell.hashtag2.isHidden = true
+                    cell.hashtag3.isHidden = true
+                    cell.hashtag4.isHidden = true
+                } else if hashTagCount == 2 {
+                    cell.hashtag1.setTitle(self.roomDataSet[idx].hashTags[0], for: .normal)
+                    cell.hashtag2.setTitle(self.roomDataSet[idx].hashTags[1], for: .normal)
+                    cell.hashtag3.isHidden = true
+                    cell.hashtag4.isHidden = true
+                } else if hashTagCount == 3 {
+                    cell.hashtag1.setTitle(self.roomDataSet[idx].hashTags[0], for: .normal)
+                    cell.hashtag2.setTitle(self.roomDataSet[idx].hashTags[1], for: .normal)
+                    cell.hashtag3.setTitle(self.roomDataSet[idx].hashTags[2], for: .normal)
+                    cell.hashtag4.isHidden = true
+                } else {
+                    cell.hashtag1.setTitle(self.roomDataSet[idx].hashTags[0], for: .normal)
+                    cell.hashtag2.setTitle(self.roomDataSet[idx].hashTags[1], for: .normal)
+                    cell.hashtag3.setTitle(self.roomDataSet[idx].hashTags[2], for: .normal)
+                    cell.hashtag4.setTitle(self.roomDataSet[idx].hashTags[3], for: .normal)
+                }
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ApartmentCell.identifier, for: indexPath) as! ApartmentCell
+                cell.priceLabel.text = self.roomDataSet[idx].priceTitle
+                if self.roomDataSet[idx].roomType == 0 {
+                    cell.roomTypeLabel.text = "오피스텔"
+                } else {
+                    cell.roomTypeLabel.text = "아파트"
+                }
+                cell.descLabel.text = self.roomDataSet[idx].desc
+                if self.roomDataSet[idx].isCheck == false {
+                    cell.checkImageView.image = UIImage(named: "star_empty")
+                } else {
+                    cell.checkImageView.image = UIImage(named: "star_fill")
+                }
+                let hashTagCount = self.roomDataSet[idx].hashTags.count
+                if hashTagCount == 0 {
+                    cell.hashtag1.isHidden = true
+                    cell.hashtag2.isHidden = true
+                    cell.hashtag3.isHidden = true
+                    cell.hashtag4.isHidden = true
+                } else if hashTagCount == 1 {
+                    cell.hashtag1.setTitle(self.roomDataSet[idx].hashTags[0], for: .normal)
+                    cell.hashtag2.isHidden = true
+                    cell.hashtag3.isHidden = true
+                    cell.hashtag4.isHidden = true
+                } else if hashTagCount == 2 {
+                    cell.hashtag1.setTitle(self.roomDataSet[idx].hashTags[0], for: .normal)
+                    cell.hashtag2.setTitle(self.roomDataSet[idx].hashTags[1], for: .normal)
+                    cell.hashtag3.isHidden = true
+                    cell.hashtag4.isHidden = true
+                } else if hashTagCount == 3 {
+                    cell.hashtag1.setTitle(self.roomDataSet[idx].hashTags[0], for: .normal)
+                    cell.hashtag2.setTitle(self.roomDataSet[idx].hashTags[1], for: .normal)
+                    cell.hashtag3.setTitle(self.roomDataSet[idx].hashTags[2], for: .normal)
+                    cell.hashtag4.isHidden = true
+                } else {
+                    cell.hashtag1.setTitle(self.roomDataSet[idx].hashTags[0], for: .normal)
+                    cell.hashtag2.setTitle(self.roomDataSet[idx].hashTags[1], for: .normal)
+                    cell.hashtag3.setTitle(self.roomDataSet[idx].hashTags[2], for: .normal)
+                    cell.hashtag4.setTitle(self.roomDataSet[idx].hashTags[3], for: .normal)
+                }
+                return cell
+            }
         }
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
