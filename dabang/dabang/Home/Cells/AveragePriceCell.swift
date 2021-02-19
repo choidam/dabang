@@ -22,7 +22,6 @@ class AveragePriceCell: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var addressLabel = UILabel().then {
-        $0.text = "서울특별시 용산구 청파동 1가"
         $0.textColor = .verydarkGray
         $0.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +33,6 @@ class AveragePriceCell: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var monthPriceLabel = UILabel().then {
-        $0.text = "2000/30"
         $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         $0.textColor = .dustyBlue
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +48,6 @@ class AveragePriceCell: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     var jeonsePriceLabel = UILabel().then {
-        $0.text = "1억 8000"
         $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         $0.textColor = .dustyOrange
         $0.translatesAutoresizingMaskIntoConstraints = false
