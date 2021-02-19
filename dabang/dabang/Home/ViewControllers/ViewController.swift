@@ -185,6 +185,19 @@ extension ViewController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
+    private func sortRoomData(){
+        if self.isAscendingSort == true {
+            self.roomDataSet = self.roomDataSet.sorted{($0.price < $1.price) }
+        } else {
+            self.roomDataSet = self.roomDataSet.sorted{($0.price > $1.price) }
+        }
+    }
+    @objc func reloadTableView(){
+        self.dabangTableView.tableFooterView = nil
+        self.dabangTableView.reloadData()
+    }
+    private func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         let spinner = UIActivityIndicatorView()
         spinner.center = footerView.center
         footerView.addSubview(spinner)
@@ -292,7 +305,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 return cell
             }
-
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: AveragePriceCell.identifier, for: indexPath) as! AveragePriceCell
             cell.addressLabel.text = self.average[0].name
@@ -314,17 +326,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 self.perform(#selector(reloadTableView), with: nil, afterDelay: 1.0)
             }
         }
-    }
-}
-
-extension ViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-
-        if position > (self.dabangTableView.contentSize.height - 100 - scrollView.frame.size.height) {
-            print("🌈append")
-        }
-
     }
 }
 
@@ -363,13 +364,11 @@ extension ViewController {
                     }
                     self.roomAllDataSet.append(RoomStruct(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL, price: price))
                 }
-
                 var index = 0
                 while index < limitCount {
                     self.roomDataSet.append(self.roomAllDataSet[index])
                     index += 1
                 }
-
                 self.roomDataSet = self.roomDataSet.sorted{($0.price < $1.price) }
                 self.dabangTableView.reloadData()
             } catch let e as NSError{
@@ -407,6 +406,7 @@ extension ViewController {
             self.dabangTableView.reloadData()
             sender.setButtonClick()
         }
+        self.dabangTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     @objc func pressSellingTypeButton(_ sender: UIButton){
         let sellingTypeIndex = sender.tag - 4
@@ -433,6 +433,7 @@ extension ViewController {
             self.dabangTableView.reloadData()
             sender.setButtonClick()
         }
+        self.dabangTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     @objc func pressPriceSortButton(_ sender: UIButton){
         if sender.backgroundColor == UIColor.lightBlue {
@@ -448,5 +449,6 @@ extension ViewController {
             self.sortRoomData()
             self.dabangTableView.reloadData()
         }
+        self.dabangTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 }
