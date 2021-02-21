@@ -184,8 +184,10 @@ extension ViewController {
     }
     private func sortRoomData(){
         if self.isAscendingSort == true {
+            self.roomAllDataSet = self.roomAllDataSet.sorted{($0.price < $1.price) }
             self.roomDataSet = self.roomDataSet.sorted{($0.price < $1.price) }
         } else {
+            self.roomAllDataSet = self.roomAllDataSet.sorted{($0.price > $1.price) }
             self.roomDataSet = self.roomDataSet.sorted{($0.price > $1.price) }
         }
     }
@@ -351,6 +353,7 @@ extension ViewController {
                         }
                     }
                     self.roomAllDataSet.append(RoomStruct(desc: room.desc, isCheck: room.isCheck, priceTitle: room.priceTitle, roomType: room.roomType, sellingType: room.sellingType, hashTags: hashtags, imgURL: room.imgURL, price: price))
+                    self.roomAllDataSet = self.roomAllDataSet.sorted{($0.price < $1.price) }
                 }
                 var index = 0
                 while index < limitCount {

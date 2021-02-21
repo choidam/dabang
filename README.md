@@ -14,7 +14,7 @@
 
 ### ✏️ Tableview 페이징 & 평균가 데이터 처리
 
-<div align="center"><img src="./screenshots/paging.gif" width="300"></div>
+<div align="center"><img src="./screenshots/pagination.gif" width="300"></div>
 
 <br/>
 
