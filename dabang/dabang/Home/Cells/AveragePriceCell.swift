@@ -11,43 +11,43 @@ import Then
 
 class AveragePriceCell: UITableViewCell {
     static let identifier = "averagePriceCell"
-    var divideView = UIView().then {
+    let divideView = UIView().then {
         $0.backgroundColor = .verylightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var averagePriceLabel = UILabel().then {
+    let averagePriceLabel = UILabel().then {
         $0.text = "평균 매물가"
         $0.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         $0.textColor = .black
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var addressLabel = UILabel().then {
+    let addressLabel = UILabel().then {
         $0.textColor = .verydarkGray
         $0.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var monthLabel = UILabel().then {
+    let monthLabel = UILabel().then {
         $0.text = "평균월세"
         $0.textColor = .verydarkGray
         $0.font = UIFont.systemFont(ofSize: 11)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var monthPriceLabel = UILabel().then {
+    let monthPriceLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         $0.textColor = .dustyBlue
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var divideView2 = UIView().then {
+    let divideView2 = UIView().then {
         $0.backgroundColor = .lightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var jeonseLabel = UILabel().then {
+    let jeonseLabel = UILabel().then {
         $0.text = "평균전세"
         $0.font = UIFont.systemFont(ofSize: 11)
         $0.textColor = .verydarkGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var jeonsePriceLabel = UILabel().then {
+    let jeonsePriceLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         $0.textColor = .dustyOrange
         $0.translatesAutoresizingMaskIntoConstraints = false

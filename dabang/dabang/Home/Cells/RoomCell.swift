@@ -11,37 +11,37 @@ import Then
 
 class RoomCell: UITableViewCell {
     static let identifier = "roomCell"
-    var divideView = UIView().then {
+    let divideView = UIView().then {
         $0.backgroundColor = .verylightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var priceLabel = UILabel().then {
+    let priceLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var roomTypeLabel = UILabel().then {
+    let roomTypeLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var roomImageView = UIImageView().then {
+    let roomImageView = UIImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 4
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var checkImageView = UIImageView().then {
+    let checkImageView = UIImageView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var descLabel = UILabel().then {
+    let descLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var hashtag1 = UIButton().then {
+    let hashtag1 = UIButton().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var hashtag2 = UIButton().then {
+    let hashtag2 = UIButton().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var hashtag3 = UIButton().then {
+    let hashtag3 = UIButton().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var hashtag4 = UIButton().then {
+    let hashtag4 = UIButton().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

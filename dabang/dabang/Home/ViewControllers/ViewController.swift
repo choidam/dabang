@@ -10,76 +10,76 @@ import SnapKit
 import Then
 
 class ViewController: UIViewController {
-    var roomKindLabel = UILabel().then{
+    let roomKindLabel = UILabel().then{
         $0.text = "방 종류"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.textColor = .black
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var oneRoomButton = UIButton().then {
+    let oneRoomButton = UIButton().then {
         $0.setTitle("원룸", for: .normal)
         $0.tag = 0
         $0.addTarget(self, action: #selector(pressRoomKindButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var twoRoomButton = UIButton().then {
+    let twoRoomButton = UIButton().then {
         $0.setTitle("투쓰리룸", for: .normal)
         $0.tag = 1
         $0.addTarget(self, action: #selector(pressRoomKindButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var officetelButton = UIButton().then {
+    let officetelButton = UIButton().then {
         $0.setTitle("오피스텔", for: .normal)
         $0.tag = 2
         $0.addTarget(self, action: #selector(pressRoomKindButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var apartmentButton = UIButton().then {
+    let apartmentButton = UIButton().then {
         $0.setTitle("아파트", for: .normal)
         $0.tag = 3
         $0.addTarget(self, action: #selector(pressRoomKindButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var forsaleLabel = UILabel().then {
+    let forsaleLabel = UILabel().then {
         $0.text = "매물 종류"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.textColor = .black
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var monthlyRentButton = UIButton().then {
+    let monthlyRentButton = UIButton().then {
         $0.setTitle("월세", for: .normal)
         $0.tag = 4
         $0.addTarget(self, action: #selector(pressSellingTypeButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var jeonseButton = UIButton().then {
+    let jeonseButton = UIButton().then {
         $0.setTitle("전세", for: .normal)
         $0.tag = 5
         $0.addTarget(self, action: #selector(pressSellingTypeButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var tradingButton = UIButton().then {
+    let tradingButton = UIButton().then {
         $0.setTitle("매매", for: .normal)
         $0.tag = 6
         $0.addTarget(self, action: #selector(pressSellingTypeButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var priceLabel = UILabel().then {
+    let priceLabel = UILabel().then {
         $0.text = "가격"
         $0.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         $0.textColor = .black
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var priceSortButton = UIButton().then {
+    let priceSortButton = UIButton().then {
         $0.setTitle("오름차순", for: .normal)
         $0.addTarget(self, action: #selector(pressPriceSortButton(_:)), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var divideLine = UIView().then {
+    let divideLine = UIView().then {
         $0.backgroundColor = .verylightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
-    var dabangTableView = UITableView().then {
+    let dabangTableView = UITableView().then {
         $0.separatorStyle = .none
         $0.allowsSelection = false
         $0.register(RoomCell.self, forCellReuseIdentifier: RoomCell.identifier)
