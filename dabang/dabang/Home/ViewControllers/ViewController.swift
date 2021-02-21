@@ -306,15 +306,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == self.roomDataSet.count - 1 {
-            if self.roomDataSet.count + 12 < self.roomAllDataSet.count {
-                var index = self.roomDataSet.count
-                limitCount = index + 12
-                while index < limitCount {
-                    self.roomDataSet.append(self.roomAllDataSet[index])
-                    index += 1
+            DispatchQueue.main.async {
+                if self.roomDataSet.count + 12 < self.roomAllDataSet.count {
+                    if tableView.visibleCells.contains(cell){
+                        self.addData()
+                    }
                 }
-                tableView.tableFooterView = createSpinnerFooter()
-                self.perform(#selector(reloadTableView), with: nil, afterDelay: 1.0)
             }
         }
     }
@@ -360,13 +357,25 @@ extension ViewController {
                     self.roomDataSet.append(self.roomAllDataSet[index])
                     index += 1
                 }
-                self.roomDataSet = self.roomDataSet.sorted{($0.price < $1.price) }
+                self.sortRoomData()
                 self.dabangTableView.reloadData()
             } catch let e as NSError{
                 print(e.localizedDescription)
             }
         } else {
             print("roadTextFile filepath error")
+        }
+    }
+    private func addData(){
+        if self.roomDataSet.count + 12 < self.roomAllDataSet.count {
+            var index = self.roomDataSet.count
+            limitCount = index + 12
+            while index < limitCount {
+                self.roomDataSet.append(self.roomAllDataSet[index])
+                index += 1
+            }
+            self.dabangTableView.tableFooterView = createSpinnerFooter()
+            self.perform(#selector(reloadTableView), with: nil, afterDelay: 1.0)
         }
     }
 }
