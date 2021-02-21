@@ -20,13 +20,13 @@
 
 ### ✏️ 가격 정렬 (오름차순, 내림차순)
 
-<div align="center"><img src="./screenshots/sort.gif" width="300"></div>
+<div align="center"><img src="./screenshots/sorting.gif" width="300"></div>
 
 <br/>
 
 ### ✏️ 필터 적용
 
-<div align="center"><img src="./screenshots/room.gif" width="300"><img src="./screenshots/sail.gif" width="300"></div>
+<div align="center"><img src="./screenshots/room.gif" width="300"> <img src="./screenshots/sail.gif" width="300"> <img src="./screenshots/filter.gif" width="300"></div>
 
 <br/>
 

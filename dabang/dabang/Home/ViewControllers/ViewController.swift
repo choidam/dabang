@@ -444,12 +444,22 @@ extension ViewController {
             sender.setButtonUnclick()
             sender.setTitle("내림차순", for: .normal)
             self.sortRoomData()
+            let roomCount = self.roomDataSet.count
+            self.roomDataSet.removeAll()
+            for index in 1...roomCount {
+                self.roomDataSet.append(roomAllDataSet[index])
+            }
             self.dabangTableView.reloadData()
         } else {
             self.isAscendingSort = true
             sender.setButtonClick()
             sender.setTitle("오름차순", for: .normal)
             self.sortRoomData()
+            let roomCount = self.roomDataSet.count
+            self.roomDataSet.removeAll()
+            for index in 1...roomCount {
+                self.roomDataSet.append(roomAllDataSet[index])
+            }
             self.dabangTableView.reloadData()
         }
         self.dabangTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
